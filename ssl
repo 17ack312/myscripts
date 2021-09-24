@@ -1,0 +1,34 @@
+if [ ! -d ssl_details ]
+then
+mkdir ssl_details
+fi
+
+dir="ssl_details"
+
+
+if [ $# -eq 0 ]
+then
+read -p "enter ip along with port : " ip
+else
+ip=$@
+fi
+
+
+count=1
+for i in ${ip[*]}
+do
+
+echo " " > $dir/$i.txt
+echo "===========================" >> $dir/$i.txt 
+echo " $count) $i "
+echo " $count) $i " >> $dir/$i.txt 
+sslscan $i >> $dir/$i.txt
+echo " " >> $dir/$i.txt
+echo " " >> $dir/$i.txt
+sslyze $i >> $dir/$i.txt
+echo " " >> $dir/$i.txt 
+echo "===========******==========" >> $dir/$i.txt
+echo " " >> $dir/$i.txt
+echo " " >> $dir/$i.txt
+((count++))
+done
