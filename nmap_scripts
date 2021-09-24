@@ -134,7 +134,7 @@ echo "=============================" > $fnm
 echo " >> Service and OS scan $1       "
 echo " Service and OS scan $1       " >> $fnm
 echo "=============================" >> $fnm
-nmap -Pn -sV -O $1 >> $fnm
+nmap -Pn -p 1 65535 -sV -O $1 >> $fnm
 echo "=========**********==========" >> $fnm
 echo " " >> $fnm
 }
@@ -159,7 +159,7 @@ echo "=============================" > $fnm
 echo " >> Default Script  scan $1       "
 echo " Default Script  scan $1       " >> $fnm
 echo "=============================" >> $fnm
-nmap -Pn -sC $1 >> $fnm
+nmap -Pn -p 1 65535 -sC $1 >> $fnm
 echo "=========**********==========" >> $fnm
 echo " " >> $fnm
 }
@@ -185,7 +185,7 @@ echo "=============================" > $fnm
 echo " >> Vulners.nse scan $1       "
 echo " Vulners.nse scan $1       " >> $fnm
 echo "=============================" >> $fnm
-nmap -Pn --script=vulners.nse $1 >> $fnm
+nmap -Pn -p 1 65535 --script=vulners.nse $1 >> $fnm
 echo "=========**********==========" >> $fnm
 echo " " >> $fnm
 }
@@ -210,7 +210,7 @@ echo "=============================" > $fnm
 echo " >> Heartbleed scan $1       "
 echo " Heartbleed scan $1       " >> $fnm
 echo "=============================" >> $fnm
-nmap -Pn --script=ssl-heartbleed.nse $1 >> $fnm
+nmap -Pn -p 1 65535 --script=ssl-heartbleed.nse $1 >> $fnm
 echo "=========**********==========" >> $fnm
 echo " " >> $fnm
 }
@@ -235,7 +235,7 @@ echo "=============================" > $fnm
 echo " >> SSL-Ciphers scan $1       "
 echo " SSL-Ciphers scan $1       " >> $fnm
 echo "=============================" >> $fnm
-nmap -Pn --script=ssl-enum-ciphers.nse $1 >> $fnm
+nmap -Pn -p 1 65535 --script=ssl-enum-ciphers.nse $1 >> $fnm
 echo "=========**********==========" >> $fnm
 echo " " >> $fnm
 }
@@ -261,7 +261,7 @@ echo "=============================" > $fnm
 echo " >> SSH-Algo scan $1       "
 echo " SSH-Algo scan $1       " >> $fnm
 echo "=============================" >> $fnm
-nmap -Pn --script=ssh2-enum-algos.nse $1 >> $fnm
+nmap  -p 1 65535 -Pn --script=ssh2-enum-algos.nse $1 >> $fnm
 echo "=========**********==========" >> $fnm
 echo " " >> $fnm
 }
@@ -288,7 +288,7 @@ echo "=============================" > $fnm
 echo " >> SMB Security scan $1       "
 echo " SMB Security scan $1       " >> $fnm
 echo "=============================" >> $fnm
-nmap -Pn --script=smb2-security-mode.nse $1 >> $fnm
+nmap -Pn -p 1 65535 --script=smb2-security-mode.nse $1 >> $fnm
 echo "=========**********==========" >> $fnm
 echo " " >> $fnm
 }
@@ -315,7 +315,7 @@ echo "=============================" > $fnm
 echo " >> DNS Recursion scan $1       "
 echo " DNS Recursion scan $1       " >> $fnm
 echo "=============================" >> $fnm
-nmap -Pn --script=dns-recursion.nse $1 >> $fnm
+nmap -Pn -p 1 65535 --script=dns-recursion.nse $1 >> $fnm
 echo "=========**********==========" >> $fnm
 echo " " >> $fnm
 }
@@ -342,7 +342,7 @@ echo "=============================" > $fnm
 echo " >> DNS Snoop scan $1       "
 echo " DNS Snoop scan $1       " >> $fnm
 echo "=============================" >> $fnm
-nmap -Pn --script=dns-cache-snoop.nse $1 >> $fnm
+nmap -Pn -p 1 65535 --script=dns-cache-snoop.nse $1 >> $fnm
 echo "=========**********==========" >> $fnm
 echo " " >> $fnm
 }
