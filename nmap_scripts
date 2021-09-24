@@ -1,0 +1,415 @@
+
+clear 
+
+echo "Created By RAJDEEP BASU"
+echo "Report bug at : 17ack312@gmail.com"
+echo " "
+echo "Press enter to continue " 
+read enter
+
+clear
+if [ $# -eq 0 ]
+then
+echo "[1] Enter IPs manually "
+echo "[2] Get from File(ip.txt)"
+read -p " [>] Choice : " c 
+	case $c in 
+	1)
+	echo -e  "enter values separated by space :"
+	read ip
+	;;
+
+	2)
+	ip=(`cat ip.txt`)
+	;;
+	esac
+fi
+
+
+
+dir=$HOME/`date +%d_%m_%Y`
+#ip=(`cat ip.txt`)
+if [ ! -d $dir ]
+then
+mkdir $dir
+fi
+
+cd $dir
+
+#echo $dir
+
+
+
+
+#ping 
+ping_ip(){
+
+if [ ! -d $dir/ping ]
+then
+mkdir $dir/ping
+fi
+
+fnm=$dir/ping/$1_`date +%H:%M`.txt
+#echo $fnm
+if [ ! -f $fnm ]
+then
+touch $fnm
+fi
+
+echo "=============================" > $fnm
+echo " >> Ping Checking $1 "
+echo " Ping Checking $1       " >> $fnm
+echo "=============================" >> $fnm
+ping -c 10 $1 >> $fnm
+echo "==========*********==========" >> $fnm
+echo " " >> $fnm
+}
+
+
+#sslscan
+ssl_scan(){
+
+if [ ! -d $dir/sslscan ]
+then
+mkdir $dir/sslscan
+fi
+
+fnm=$dir/sslscan/$1_`date +%H:%M`.txt
+#echo $fnm
+if [ ! -f $fnm ]
+then
+touch $fnm
+fi
+
+echo "=============================" > $fnm
+echo " >> SSLscan Report $1       "
+echo " SSLscan Report $1       " >> $fnm
+echo "=============================" >> $fnm
+sslscan $1 >> $fnm
+echo "==========*********===========" >> $fnm
+echo " " >> $fnm
+}
+
+
+#sslyze
+ssl_yze(){
+
+if [ ! -d $dir/sslyze ]
+then
+mkdir $dir/sslyze
+fi
+
+fnm=$dir/sslyze/$1_`date +%H:%M`.txt
+#echo $fnm
+if [ ! -f $fnm ]
+then
+touch $fnm
+fi
+
+echo "=============================" > $fnm
+echo " >> SSLyze Report $1       "
+echo " SSLyze Report $1       " >> $fnm
+echo "=============================" >> $fnm
+sslyze $1 >> $fnm
+echo "=========**********==========" >> $fnm
+echo " " >> $fnm
+}
+
+#nmap Service and OS
+serv_os(){
+
+if [ ! -d $dir/serv_os ]
+then
+mkdir $dir/serv_os
+fi
+
+fnm=$dir/serv_os/$1_`date +%H:%M`.txt
+#echo $fnm
+if [ ! -f $fnm ]
+then
+touch $fnm
+fi
+
+echo "=============================" > $fnm
+echo " >> Service and OS scan $1       "
+echo " Service and OS scan $1       " >> $fnm
+echo "=============================" >> $fnm
+nmap -sV -O $1 >> $fnm
+echo "=========**********==========" >> $fnm
+echo " " >> $fnm
+}
+
+
+#nmap_default
+nmapdef(){
+
+if [ ! -d $dir/nmap_def ]
+then
+mkdir $dir/nmap_def
+fi
+
+fnm=$dir/nmap_def/$1_`date +%H:%M`.txt
+#echo $fnm
+if [ ! -f $fnm ]
+then
+touch $fnm
+fi
+
+echo "=============================" > $fnm
+echo " >> Default Script  scan $1       "
+echo " Default Script  scan $1       " >> $fnm
+echo "=============================" >> $fnm
+nmap -sC $1 >> $fnm
+echo "=========**********==========" >> $fnm
+echo " " >> $fnm
+}
+
+
+
+#vulners.nse
+vuln(){
+
+if [ ! -d $dir/vulners ]
+then
+mkdir $dir/vulners
+fi
+
+fnm=$dir/vulners/$1_`date +%H:%M`.txt
+#echo $fnm
+if [ ! -f $fnm ]
+then
+touch $fnm
+fi
+
+echo "=============================" > $fnm
+echo " >> Vulners.nse scan $1       "
+echo " Vulners.nse scan $1       " >> $fnm
+echo "=============================" >> $fnm
+nmap --script=vulners.nse $1 >> $fnm
+echo "=========**********==========" >> $fnm
+echo " " >> $fnm
+}
+
+
+#heartbleed
+hbleed(){
+
+if [ ! -d $dir/hbld ]
+then
+mkdir $dir/hbld
+fi
+
+fnm=$dir/hbld/$1_`date +%H:%M`.txt
+#echo $fnm
+if [ ! -f $fnm ]
+then
+touch $fnm
+fi
+
+echo "=============================" > $fnm
+echo " >> Heartbleed scan $1       "
+echo " Heartbleed scan $1       " >> $fnm
+echo "=============================" >> $fnm
+nmap --script=ssl-heartbleed.nse $1 >> $fnm
+echo "=========**********==========" >> $fnm
+echo " " >> $fnm
+}
+
+
+#ssl ciphers
+sslcipher(){
+
+if [ ! -d $dir/ssl_cipher ]
+then
+mkdir $dir/ssl_cipher
+fi
+
+fnm=$dir/ssl_cipher/$1_`date +%H:%M`.txt
+#echo $fnm
+if [ ! -f $fnm ]
+then
+touch $fnm
+fi
+
+echo "=============================" > $fnm
+echo " >> SSL-Ciphers scan $1       "
+echo " SSL-Ciphers scan $1       " >> $fnm
+echo "=============================" >> $fnm
+nmap --script=ssl-enum-ciphers.nse $1 >> $fnm
+echo "=========**********==========" >> $fnm
+echo " " >> $fnm
+}
+
+
+
+#ssh-algo
+sshalgo(){
+
+if [ ! -d $dir/ssh_algo ]
+then
+mkdir $dir/ssh_algo
+fi
+
+fnm=$dir/ssh_algo/$1_`date +%H:%M`.txt
+#echo $fnm
+if [ ! -f $fnm ]
+then
+touch $fnm
+fi
+
+echo "=============================" > $fnm
+echo " >> SSH-Algo scan $1       "
+echo " SSH-Algo scan $1       " >> $fnm
+echo "=============================" >> $fnm
+nmap --script=ssh2-enum-algos.nse $1 >> $fnm
+echo "=========**********==========" >> $fnm
+echo " " >> $fnm
+}
+
+
+
+
+#smb2-security-mode.nse
+smbsec(){
+
+if [ ! -d $dir/smb_sec ]
+then
+mkdir $dir/smb_sec
+fi
+
+fnm=$dir/smb_sec/$1_`date +%H:%M`.txt
+#echo $fnm
+if [ ! -f $fnm ]
+then
+touch $fnm
+fi
+
+echo "=============================" > $fnm
+echo " >> SMB Security scan $1       "
+echo " SMB Security scan $1       " >> $fnm
+echo "=============================" >> $fnm
+nmap --script=smb2-security-mode.nse $1 >> $fnm
+echo "=========**********==========" >> $fnm
+echo " " >> $fnm
+}
+
+
+
+
+#dns recursion
+dnsrec(){
+
+if [ ! -d $dir/dns_rec ]
+then
+mkdir $dir/dns_rec
+fi
+
+fnm=$dir/dns_rec/$1_`date +%H:%M`.txt
+#echo $fnm
+if [ ! -f $fnm ]
+then
+touch $fnm
+fi
+
+echo "=============================" > $fnm
+echo " >> DNS Recursion scan $1       "
+echo " DNS Recursion scan $1       " >> $fnm
+echo "=============================" >> $fnm
+nmap --script=dns-recursion.nse $1 >> $fnm
+echo "=========**********==========" >> $fnm
+echo " " >> $fnm
+}
+
+
+
+
+#dns cache snoop
+dnssnoop(){
+
+if [ ! -d $dir/dns_snoop ]
+then
+mkdir $dir/dns_snoop
+fi
+
+fnm=$dir/dns_snoop/$1_`date +%H:%M`.txt
+#echo $fnm
+if [ ! -f $fnm ]
+then
+touch $fnm
+fi
+
+echo "=============================" > $fnm
+echo " >> DNS Snoop scan $1       "
+echo " DNS Snoop scan $1       " >> $fnm
+echo "=============================" >> $fnm
+nmap --script=dns-cache-snoop.nse $1 >> $fnm
+echo "=========**********==========" >> $fnm
+echo " " >> $fnm
+}
+
+
+
+
+count=1
+for i in ${ip[*]}
+do
+
+#if [ ! -d $dir/$i ]
+#then
+#mkdir $dir/$i
+#fi
+
+echo "==========================="
+echo " $count ) IP : $i"
+echo "==========================="
+echo " "
+echo " "
+ping_ip $i
+
+echo " "
+echo " "
+ssl_scan $i
+
+echo " "
+echo " "
+ssl_yze $i
+
+echo " "
+echo " "
+serv_os $i
+
+echo " "
+echo " "
+nmapdef $i
+
+echo " "
+echo " "
+vuln $i
+
+echo " "
+echo " "
+hbleed $i
+
+echo " "
+echo " "
+sslcipher $i
+
+echo " "
+echo " "
+sshalgo $i
+
+echo " "
+echo " "
+smbsec $i
+
+echo " "
+echo " "
+dnsrec $i
+
+echo " "
+echo " "
+dnssnoop $i
+
+((count++))
+
+done
