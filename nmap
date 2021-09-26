@@ -73,7 +73,7 @@ echo -e "[$count] IP : $i"
 echo -e "---------------------------------"
 echo -e " "
 
-echo -e "[date +%F' '%X] pinging $1" > $fnm
+echo -e "[`date +%F' '%X`] pinging $1" > $fnm
 echo -e "\n=================================================" >> $fnm
 echo -e "[$count] IP : $i" >> $fnm
 echo -e "---------------------------------" >> $fnm
@@ -108,13 +108,13 @@ touch $fnm
 fi
 
 echo -e " "
-echo -e "[date +%F' '%X] Service Scan $1"
+echo -e "[`date +%F' '%X`] Service Scan $1"
 echo -e "\n================================================="
 echo -e "[$count] IP : $1"
 echo -e "---------------------------------"
 echo -e " "
 
-echo -e "[date +%F' '%X] Service Scan $1" > $fnm
+echo -e "[`date +%F' '%X`] Service Scan $1" > $fnm
 echo -e "\n=================================================" >> $fnm
 echo -e "[$count]  IP : $1" >> $fnm
 echo -e "---------------------------------" >> $fnm
@@ -148,13 +148,13 @@ touch $fnm
 fi
 
 echo -e " "
-echo -e "[date +%F' '%X] Nmap SSL Scan $1"
+echo -e "[`date +%F' '%X`] Nmap SSL Scan $1"
 echo -e "\n================================================="
 echo -e "[$count] IP : $1"
 echo -e "---------------------------------"
 echo -e " "
 
-echo -e "[date +%F' '%X] Nmap SSL Scan $1" > $fnm
+echo -e "[`date +%F' '%X`] Nmap SSL Scan $1" > $fnm
 echo -e "\n=================================================" >> $fnm
 echo -e "[$count]  IP : $1" >> $fnm
 echo -e "---------------------------------" >> $fnm
@@ -184,13 +184,13 @@ touch $fnm
 fi
 
 echo -e " "
-echo -e "[date +%F' '%X] SSL Scan $1"
+echo -e "[`date +%F' '%X`] SSL Scan $1"
 echo -e "\n================================================="
 echo -e "[$count] IP : $1"
 echo -e "---------------------------------"
 echo -e " "
 
-echo -e "[date +%F' '%X] SSL Scan $1" > $fnm
+echo -e "[`date +%F' '%X`] SSL Scan $1" > $fnm
 echo -e "\n=================================================" >> $fnm
 echo -e "[$count]  IP : $1" >> $fnm
 echo -e "---------------------------------" >> $fnm
@@ -222,7 +222,7 @@ touch $fnm
 fi
 
 echo -e " "
-echo -e "[date +%F' '%X] Nmap SSH Scan $1"
+echo -e "[`date +%F' '%X`] Nmap SSH Scan $1"
 echo -e "\n================================================="
 echo -e "[$count] IP : $1"
 echo -e "---------------------------------"
@@ -262,13 +262,13 @@ touch $fnm
 fi
 
 echo -e " "
-echo -e "[date +%F' '%X] Nmap SMB Scan $1"
+echo -e "[`date +%F' '%X`] Nmap SMB Scan $1"
 echo -e "\n================================================="
 echo -e "[$count] IP : $1"
 echo -e "---------------------------------"
 echo -e " "
 
-echo -e "[date +%F' '%X] Nmap SMB Scan $1" > $fnm
+echo -e "[`date +%F' '%X`] Nmap SMB Scan $1" > $fnm
 echo -e "\n=================================================" >> $fnm
 echo -e "[$count]  IP : $1" >> $fnm
 echo -e "---------------------------------" >> $fnm
@@ -299,13 +299,13 @@ touch $fnm
 fi
 
 echo -e " "
-echo -e "[date +%F' '%X] Nmap DNS Scan $1"
+echo -e "[`date +%F' '%X`] Nmap DNS Scan $1"
 echo -e "\n================================================="
 echo -e "[$count] IP : $1"
 echo -e "---------------------------------"
 echo -e " "
 
-echo -e "[date +%F' '%X] Nmap DNS Scan $1" > $fnm
+echo -e "[`date +%F' '%X`] Nmap DNS Scan $1" > $fnm
 echo -e "\n=================================================" >> $fnm
 echo -e "[$count]  IP : $1" >> $fnm
 echo -e "---------------------------------" >> $fnm
@@ -337,13 +337,13 @@ touch $fnm
 fi
 
 echo -e " "
-echo -e "[date +%F' '%X] Nmap HTTP Scan $1"
+echo -e "[`date +%F' '%X`] Nmap HTTP Scan $1"
 echo -e "\n================================================="
 echo -e "[$count] IP : $1"
 echo -e "---------------------------------"
 echo -e " "
 
-echo -e "[date +%F' '%X] Nmap HTTP Scan $1" > $fnm
+echo -e "[`date +%F' '%X`] Nmap HTTP Scan $1" > $fnm
 echo -e "\n=================================================" >> $fnm
 echo -e "[$count]  IP : $1" >> $fnm
 echo -e "---------------------------------" >> $fnm
@@ -375,13 +375,13 @@ touch $fnm
 fi
 
 echo -e " "
-echo -e "[date +%F' '%X] Nmap NTLM Scan $1"
+echo -e "[`date +%F' '%X`] Nmap NTLM Scan $1"
 echo -e "\n================================================="
 echo -e "[$count] IP : $1"
 echo -e "---------------------------------"
 echo -e " "
 
-echo -e "[date +%F' '%X] Nmap NTLM Scan $1" > $fnm
+echo -e "[`date +%F' '%X`] Nmap NTLM Scan $1" > $fnm
 echo -e "\n=================================================" >> $fnm
 echo -e "[$count]  IP : $1" >> $fnm
 echo -e "---------------------------------" >> $fnm
