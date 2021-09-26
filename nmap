@@ -386,7 +386,7 @@ echo -e "\n=================================================" >> $fnm
 echo -e "[$count]  IP : $1" >> $fnm
 echo -e "---------------------------------" >> $fnm
 echo -e " " >> $fnm
-nmap --script=http-ntlm-info.nse,imap-ntlm-info.nse,ms-sql-ntlm-info.nse,nntp-ntlm-info.nse,pop3-ntlm-info.nse,rdp-ntlm-info.nse,smtp-ntlm-info.nse,telnet-ntlm-info.nse  >> $fnm
+nmap --script=http-ntlm-info.nse,imap-ntlm-info.nse,ms-sql-ntlm-info.nse,nntp-ntlm-info.nse,pop3-ntlm-info.nse,rdp-ntlm-info.nse,smtp-ntlm-info.nse,telnet-ntlm-info.nse -v $1 >> $fnm
 
 echo -e "\n=================================================\n\n\n"
 }
