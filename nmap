@@ -1,0 +1,443 @@
+clear
+
+echo "Created By RAJDEEP BASU"
+echo "Report bug at : 17ack312@gmail.com"
+echo " "
+echo "Press enter to continue "
+read enter
+
+clear
+
+out=`pwd`/NMAP_OUTPUT
+
+if [ ! -d $out ]
+then
+mkdir $out
+fi
+
+
+#echo $out
+
+
+if [ $# -eq 0 ]
+then
+echo "[1] Enter IPs manually "
+echo "[2] Get from File(ip.txt)"
+echo "[3] Enter File Location"
+read -p " [>] Choice : " c
+        case $c in
+        1)
+        echo -e  "enter values separated by space :"
+        read ip
+        ;;
+
+        2)
+        ip=(`cat ip.txt`)
+        ;;
+
+	3)
+	echo -e "enter file loc : \c"
+	read loc
+	ip=(`cat $loc`)
+	;;
+        esac
+else
+ip=($@)
+fi
+clear
+# 1. PING
+ping_ip(){
+count=$2
+dir=$out/$1
+#echo $dir
+
+if [ ! -d $dir ]
+then
+mkdir $dir
+fi
+cd $dir
+
+fnm=$dir/ping_`date +%F_%R.txt`
+
+#echo $fnm
+
+if [ ! -f $fnm ]
+then
+touch $fnm
+fi
+
+echo -e " "
+echo -e "[`date +%F' '%X`] pinging $1"
+echo -e "\n================================================="
+echo -e "[$count] IP : $i"
+echo -e "---------------------------------"
+echo -e " "
+
+echo -e "[date +%F' '%X] pinging $1" > $fnm
+echo -e "\n=================================================" >> $fnm
+echo -e "[$count] IP : $i" >> $fnm
+echo -e "---------------------------------" >> $fnm
+echo -e " " >> $fnm
+ping -c5 $1 >> $fnm
+echo -e "\n=================================================\n\n\n" >> $fnm
+
+
+echo -e "\n=================================================\n\n\n"
+}
+
+
+
+
+
+
+# 2. SERVICE OS SCAN 
+serv(){
+count=$2
+dir=$out/$1
+if [ ! -d $dir ]
+then
+mkdir $dir
+fi
+cd $dir
+
+fnm=$dir/serv_`date +%F_%R.txt`
+
+if [ ! -f $fnm ]
+then
+touch $fnm
+fi
+
+echo -e " "
+echo -e "[date +%F' '%X] Service Scan $1"
+echo -e "\n================================================="
+echo -e "[$count] IP : $1"
+echo -e "---------------------------------"
+echo -e " "
+
+echo -e "[date +%F' '%X] Service Scan $1" > $fnm
+echo -e "\n=================================================" >> $fnm
+echo -e "[$count]  IP : $1" >> $fnm
+echo -e "---------------------------------" >> $fnm
+echo -e " " >> $fnm
+nmap -sV -p 1-65535 -A  --osscan-guess --script=default,vulners.nse $1 >> $fnm
+echo -e "\n=================================================\n\n\n" >> $fnm
+
+
+echo -e "\n=================================================\n\n\n"
+}
+
+
+
+
+#3. NMAP SSL 
+
+nmap_ssl(){
+count=$2
+dir=$out/$1
+if [ ! -d $dir ]
+then
+mkdir $dir
+fi
+cd $dir
+
+fnm=$dir/nmap_ssl_`date +%F_%R.txt`
+
+if [ ! -f $fnm ]
+then
+touch $fnm
+fi
+
+echo -e " "
+echo -e "[date +%F' '%X] Nmap SSL Scan $1"
+echo -e "\n================================================="
+echo -e "[$count] IP : $1"
+echo -e "---------------------------------"
+echo -e " "
+
+echo -e "[date +%F' '%X] Nmap SSL Scan $1" > $fnm
+echo -e "\n=================================================" >> $fnm
+echo -e "[$count]  IP : $1" >> $fnm
+echo -e "---------------------------------" >> $fnm
+echo -e " " >> $fnm
+nmap --script=ssl-cert.nse,ssl-date.nse,ssl-cert-intaddr.nse,ssl-enum-ciphers.nse,ssl-heartbleed.nse,ssl-poodle.nse -vv $1 >> $fnm 
+echo -e "\n=================================================\n\n\n" >> $fnm
+
+
+echo -e "\n=================================================\n\n\n"
+}
+
+#4 SSL
+ssl(){
+
+dir=$out/$1
+if [ ! -d $dir ]
+then
+mkdir $dir
+fi
+cd $dir
+
+fnm=$dir/ssl_`date +%F_%R.txt`
+
+if [ ! -f $fnm ]
+then
+touch $fnm
+fi
+
+echo -e " "
+echo -e "[date +%F' '%X] SSL Scan $1"
+echo -e "\n================================================="
+echo -e "[$count] IP : $1"
+echo -e "---------------------------------"
+echo -e " "
+
+echo -e "[date +%F' '%X] SSL Scan $1" > $fnm
+echo -e "\n=================================================" >> $fnm
+echo -e "[$count]  IP : $1" >> $fnm
+echo -e "---------------------------------" >> $fnm
+echo -e " " >> $fnm
+sslscan $1 >> $fnm
+sslyze $1 >> $fnm
+echo -e "\n=================================================\n\n\n" >> $fnm
+
+
+echo -e "\n=================================================\n\n\n"
+}
+
+
+#5. NMAP SSH
+nmap_ssh(){
+count=$2
+dir=$out/$1
+if [ ! -d $dir ]
+then
+mkdir $dir
+fi
+cd $dir
+
+fnm=$dir/nmap_ssh_`date +%F_%R.txt`
+
+if [ ! -f $fnm ]
+then
+touch $fnm
+fi
+
+echo -e " "
+echo -e "[date +%F' '%X] Nmap SSH Scan $1"
+echo -e "\n================================================="
+echo -e "[$count] IP : $1"
+echo -e "---------------------------------"
+echo -e " "
+
+echo -e "[date +%F' '%X] Nmap SSH Scan $1" > $fnm
+echo -e "\n=================================================" >> $fnm
+echo -e "[$count]  IP : $1" >> $fnm
+echo -e "---------------------------------" >> $fnm
+echo -e " " >> $fnm
+nmap --script=ssh2-enum-algos.nse,sshv1.nse -vv $1 >> $fnm 
+nmap --script=ssh-hostkey.nse --script-args ssh_hostkey=full -vv $1 >> $fnm
+nmap --script=ssh-run.nse --script-args="ssh-run.cmd=ls -l /, ssh-run.username=myusername, ssh-run.password=mypassword" $1 >> $fnm
+echo -e "\n=================================================\n\n\n" >> $fnm
+
+
+echo -e "\n=================================================\n\n\n"
+}
+
+
+#6. NMAP SMB
+
+nmap_smb(){
+count=$2
+dir=$out/$1
+if [ ! -d $dir ]
+then
+mkdir $dir
+fi
+cd $dir
+
+fnm=$dir/nmap_smb_`date +%F_%R.txt`
+
+if [ ! -f $fnm ]
+then
+touch $fnm
+fi
+
+echo -e " "
+echo -e "[date +%F' '%X] Nmap SMB Scan $1"
+echo -e "\n================================================="
+echo -e "[$count] IP : $1"
+echo -e "---------------------------------"
+echo -e " "
+
+echo -e "[date +%F' '%X] Nmap SMB Scan $1" > $fnm
+echo -e "\n=================================================" >> $fnm
+echo -e "[$count]  IP : $1" >> $fnm
+echo -e "---------------------------------" >> $fnm
+echo -e " " >> $fnm
+nmap --script=smb2-security-mode.nse,smb-security-mode.nse,smb-enum-services.nse,smb-os-discovery.nse,smb-system-info.nse  -vv $1 >> $fnm
+echo -e "\n=================================================\n\n\n" >> $fnm
+
+
+echo -e "\n=================================================\n\n\n"
+}
+
+#7. NMAP DNS
+
+nmap_dns(){
+count=$2
+dir=$out/$1
+if [ ! -d $dir ]
+then
+mkdir $dir
+fi
+cd $dir
+
+fnm=$dir/nmap_dns_`date +%F_%R.txt`
+
+if [ ! -f $fnm ]
+then
+touch $fnm
+fi
+
+echo -e " "
+echo -e "[date +%F' '%X] Nmap DNS Scan $1"
+echo -e "\n================================================="
+echo -e "[$count] IP : $1"
+echo -e "---------------------------------"
+echo -e " "
+
+echo -e "[date +%F' '%X] Nmap DNS Scan $1" > $fnm
+echo -e "\n=================================================" >> $fnm
+echo -e "[$count]  IP : $1" >> $fnm
+echo -e "---------------------------------" >> $fnm
+echo -e " " >> $fnm
+nmap --script=dns-cache-snoop.nse,dns-recursion.nse,dns-service-discovery.nse,dns-srv-enum.nse  -vv $1 >> $fnm
+echo -e "\n=================================================\n\n\n" >> $fnm
+
+
+echo -e "\n=================================================\n\n\n"
+}
+
+
+#8. NMAP HTTP
+
+nmap_http(){
+count=$2
+dir=$out/$1
+if [ ! -d $dir ]
+then
+mkdir $dir
+fi
+cd $dir
+
+fnm=$dir/nmap_http_`date +%F_%R.txt`
+
+if [ ! -f $fnm ]
+then
+touch $fnm
+fi
+
+echo -e " "
+echo -e "[date +%F' '%X] Nmap HTTP Scan $1"
+echo -e "\n================================================="
+echo -e "[$count] IP : $1"
+echo -e "---------------------------------"
+echo -e " "
+
+echo -e "[date +%F' '%X] Nmap HTTP Scan $1" > $fnm
+echo -e "\n=================================================" >> $fnm
+echo -e "[$count]  IP : $1" >> $fnm
+echo -e "---------------------------------" >> $fnm
+echo -e " " >> $fnm
+nmap --script=http-fileupload-exploiter.nse,http-enum.nse,http-cookie-flags.nse,http-cors.nse,http-cross-domain-policy.nse,http-csrf.nse,http-xssed.nse,http-waf-detect.nse,http-waf-fingerprint.nse,http-traceroute.nse,http-slowloris-check.nse,http-slowloris.nse,http-sql-injection.nse,https-redirect.nse,http-stored-xss.nse,http-security-headers.nse,http-server-header.nse,http-php-version.nse,http-cors.nse,http-cross-domain-policy.nse,http-csrf.nse  -vv $1 >> $fnm
+
+echo -e "\n=================================================\n\n\n" >> $fnm
+
+
+echo -e "\n=================================================\n\n\n"
+}
+
+#9. NMAP NTLM
+
+nmap_ntlm(){
+count=$2
+dir=$out/$1
+if [ ! -d $dir ]
+then
+mkdir $dir
+fi
+cd $dir
+
+fnm=$dir/nmap_ntlm_`date +%F_%R.txt`
+
+if [ ! -f $fnm ]
+then
+touch $fnm
+fi
+
+echo -e " "
+echo -e "[date +%F' '%X] Nmap NTLM Scan $1"
+echo -e "\n================================================="
+echo -e "[$count] IP : $1"
+echo -e "---------------------------------"
+echo -e " "
+
+echo -e "[date +%F' '%X] Nmap NTLM Scan $1" > $fnm
+echo -e "\n=================================================" >> $fnm
+echo -e "[$count]  IP : $1" >> $fnm
+echo -e "---------------------------------" >> $fnm
+echo -e " " >> $fnm
+nmap --script=http-ntlm-info.nse,imap-ntlm-info.nse,ms-sql-ntlm-info.nse,nntp-ntlm-info.nse,pop3-ntlm-info.nse,rdp-ntlm-info.nse,smtp-ntlm-info.nse,telnet-ntlm-info.nse  >> $fnm
+
+echo -e "\n=================================================\n\n\n"
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#==================>
+# MAIN
+#==================>
+count=1
+for i in ${ip[@]}
+do
+
+dir=$out/$i
+
+if [ ! -d $dir ]
+then
+mkdir $dir
+fi
+
+
+echo -e "[>] Total = ${#ip[@]}  Remaining = $((${#ip[@]}-$count)) "
+
+ping_ip $i $count
+serv $i $count
+nmap_ssl $i $count
+ssl $i $count
+nmap_ssh $i $count
+nmap_smb $i $count
+nmap_dns $i $count
+nmap_http $i $count
+nmap_ntlm $i $count
+
+((count++))
+done
