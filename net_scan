@@ -15,7 +15,7 @@ echo -e " "
 
 read -p "Enter PassWord to Continue : " -s x
 
-if [ `base64 <<< $x` != "aGVsbG8K" ]
+if [ `base64 <<< $x` != "cm9uaQo=" ]
 then
 echo -e " "
 echo -e "[❌] Wrong Password [❌]"
