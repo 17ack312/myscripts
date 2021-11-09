@@ -8,7 +8,7 @@ name=${name^^}
 #ip=`ifconfig | grep -w inet | tr -s '\t' ' ' | cut -d' ' -f3 | head -1`
 
 #link='http://'$ip'/'$name'/'
-
+link='https://vgwebserv/sgwebdiary/Dashboard/to_web/'"$name"'/'
 f1=$name/web_name.txt
 f2=$name/web_url.txt
 echo $f1 $f2
@@ -212,4 +212,4 @@ fi
 
 #sudo cp -rf $name /var/www/html/
 #sudo service apache2 start
-#echo $link
+echo $link
