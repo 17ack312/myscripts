@@ -5,9 +5,9 @@ read name
 name=${name^^}
 #echo $name
 
-ip=`ifconfig | grep -w inet | tr -s '\t' ' ' | cut -d' ' -f3 | head -1`
+#ip=`ifconfig | grep -w inet | tr -s '\t' ' ' | cut -d' ' -f3 | head -1`
 
-link='http://'$ip'/'$name'/'
+#link='http://'$ip'/'$name'/'
 
 f1=$name/web_name.txt
 f2=$name/web_url.txt
@@ -210,6 +210,6 @@ fi
 #get_details
 #run
 
-sudo cp -rf $name /var/www/html/
-sudo service apache2 start
-echo $link
+#sudo cp -rf $name /var/www/html/
+#sudo service apache2 start
+#echo $link
