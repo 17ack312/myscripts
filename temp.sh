@@ -11,7 +11,7 @@ name=${name^^}
 link='https://vgwebserv/sgwebdiary/Dashboard/to_web/'"$name"'/'
 f1=$name/web_name.txt
 f2=$name/web_url.txt
-echo $f1 $f2
+#echo $f1 $f2
 
 
 if [  ! -d $name ]
