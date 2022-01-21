@@ -1,0 +1,59 @@
+body{font-family: Tahoma;}
+div{margin-top: 50px;}
+
+@media print {
+  footer {page-break-after: always;}
+}
+
+h1#pagebreak{page-break-after:always}
+table{width: 650px;}
+table, tr ,td{
+	border: 1px solid black;
+	border-collapse: collapse;
+}
+td{
+	padding-left: 10px;
+	padding-right: 5px;
+}
+
+#point{
+	font-size: 14.5px;
+	font-weight: bold;
+}
+
+td#left{width: 100px;}
+td#right #info{
+	font-size: 13px;
+	text-align: justify;
+    text-justify: inter-word
+}
+
+#name_rate #point, #name_rate #info, #name_rate #sl{
+	color: white;
+	font-size: 17.5px;
+	font-weight: bold;
+}
+/*#name_rate #name #point{padding-left: 10px;padding-right: 5px;}
+#name_rate #rate #point{padding-left: 40px;padding-right: 5px;}*/
+
+#cvss_cve #info , #system #info{font-size: 14.5px;}
+
+.CRITICAL #point{color: darkred;}
+.HIGH #point{color: red;}
+.MEDIUM #point{color: #FFC000;}
+.LOW #point{color: #86fc40;}
+.INFORMATIONAL #point{color: #00B0F0;}
+
+.CRITICAL tr#name_rate{background-color: darkred;}
+.HIGH tr#name_rate{background-color: red;}
+.MEDIUM tr#name_rate{background-color: #FFC000;}
+.LOW tr#name_rate{background-color: #86fc40;}
+.INFORMATIONAL tr#name_rate{background-color: #00B0F0;}
+
+/*
+.CRITICAL{}
+.HIGH{}
+.MEDIUM{}
+.LOW{}
+.INFORMATIONAL{}
+*/
