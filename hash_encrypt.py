@@ -1,0 +1,1 @@
+import requests,sys,os;text="#$#$";url = 'https://online-toolz.com//functions/ENCRYPT.php';payload = "input=" + text;header = {'Content-Type': 'application/x-www-form-urlencoded'};res = requests.post(url, data=payload, headers=header);print(res.text)
