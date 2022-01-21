@@ -16,12 +16,30 @@ td{
 	padding-right: 5px;
 }
 
+p#ref_link{	
+	text-decoration: underline;
+	margin-top: 5px;
+	margin-bottom: 0px;
+	padding-bottom: 0px;
+	font-size: 13.5px;
+	font-weight: bold;
+}
+ol#ref_link{
+	padding-top: 0px;
+	margin-top: 0px;
+	font-size: 13.5px;
+	padding-left: 20px;
+}
+
 #point{
 	font-size: 14.5px;
 	font-weight: bold;
 }
 
-td#left{width: 100px;}
+td#left{
+	width: 100px;
+	vertical-align: top;
+}
 td#right #info{
 	font-size: 13px;
 	text-align: justify;
