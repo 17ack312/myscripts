@@ -41,9 +41,11 @@ td#left{
 	vertical-align: top;
 }
 td#right #info{
-	font-size: 13px;
+	font-size: 14px;
 	text-align: justify;
-    text-justify: inter-word
+  text-justify: inter-word;
+  padding-top: 5px;
+  padding-bottom: 5px;
 }
 
 #name_rate #point, #name_rate #info, #name_rate #sl{
