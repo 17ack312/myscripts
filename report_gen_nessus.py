@@ -181,7 +181,6 @@ print("[?] Checking For Requirements...")
 try:
     import json,re,datetime,time,requests,subprocess,glob,csv
     import numpy as np
-    import pandas as pd
     from pyexcel.cookbook import merge_all_to_a_book # pyexcel pyexcel-xlsx
     print('[✔] Successful')
 except:
