@@ -225,12 +225,13 @@ else:
 #now =str(datetime.datetime.now()).split('.',1)
 #now=(now[0]).replace(' ','_').replace(':','').replace('-','')
 
-file='E:/prime/VAPT/DFPCL/rajdeep/19_01/static_s0tc4l.html'.replace('\\','/')
+#file='E:/prime/VAPT/DFPCL/rajdeep/19_01/static_s0tc4l.html'.replace('\\','/')
+file=sys.argv[1].replace('\\','/')
 loc=file.split('/')
 loc=("/".join(loc[:-1])+'/')
 
-file_name='DFPCL_STATIC'.lower()
-#file_name=input('[?] Enter Project Name :').replace(' ','_')
+
+file_name=input('[?] Enter Project Name :').replace(' ','_')
 out_csv=loc+file_name+'_.csv'
 out_xlsx=loc+file_name+'_.xlsx'
 out_html=loc+file_name+'_.html'
