@@ -4,4 +4,4 @@ payload="input="+text
 header={'Content-Type':'application/x-www-form-urlencoded'}
 res = requests.post(url, data=payload ,headers=header)
 res=(res.content.decode())
-print(res)
+#print(res)
