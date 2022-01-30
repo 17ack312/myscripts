@@ -1,10 +1,11 @@
-body{font-family: Tahoma;font-size: 14px;}
+body{font-family: Tahoma;font-size: 14.5px;}
 @media print {
   footer {page-break-after: always;}
 }
 table,tr,td,th{
         border: 1px solid black;
         border-collapse: collapse;
+        padding: 5px;
 }
 h1#pagebreak{page-break-after:always;}
 table#ip_details {
@@ -12,6 +13,7 @@ table#ip_details {
         margin-bottom: 10px;
         width: 700px;
         margin-bottom: 30px;
+        font-size: 13.5px;
 }
 .ip_details h4{
         text-decoration: underline;
@@ -89,6 +91,7 @@ p {
 table.vuln{
         width: 700px;
         margin-bottom: 50px;
+        font-size: 13.5px;
 }
 tr#vuln{
         color: white;
@@ -120,7 +123,12 @@ tr#vuln{
 #reference #point{
         text-align: left;
         margin-left: -100px;
+        color: black;
 }
-#reference #li {margin-left: -70px;}
+#reference #ol{margin-top: -20px;}
+#reference #li {
+        margin-left: -70px;
+        font-size: 13px;
+}
 tr#classification{font-size: 14.5px;}
 .vuln #left{width: 50px;}
