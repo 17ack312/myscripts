@@ -1,79 +1,126 @@
-body{font-family: Tahoma;}
-div{margin-top: 50px;}
-
+body{font-family: Tahoma;font-size: 14px;}
 @media print {
   footer {page-break-after: always;}
 }
-
-h1#pagebreak{page-break-after:always}
-table{width: 650px;}
-table, tr ,td{
-	border: 1px solid black;
-	border-collapse: collapse;
+table,tr,td,th{
+        border: 1px solid black;
+        border-collapse: collapse;
 }
-td{
-	padding-left: 10px;
-	padding-right: 5px;
+h1#pagebreak{page-break-after:always;}
+table#ip_details {
+        margin-top: -20px;
+        margin-bottom: 10px;
+        width: 700px;
+        margin-bottom: 30px;
 }
-
-p#ref_link{	
-	text-decoration: underline;
-	margin-top: 5px;
-	margin-bottom: 0px;
-	padding-bottom: 0px;
-	font-size: 13.5px;
-	font-weight: bold;
+.ip_details h4{
+        text-decoration: underline;
+        color: #0243a1;
+        font-weight: bold;
+        margin-left: -500px;
 }
-ol#ref_link{
-	padding-top: 0px;
-	margin-top: 0px;
-	font-size: 13.5px;
-	padding-left: 20px;
+#ip_details td#point{
+        font-weight: bold;
+        color: #0243a1;
+        text-align: left;
+        padding-left: 10px;
 }
-
-#point{
-	font-size: 14.5px;
-	font-weight: bold;
+#ip_details td#details{
+        text-align: left;
+        font-weight: bold;
+        padding-left: 10px;
 }
-
-td#left{
-	width: 100px;
-	vertical-align: top;
+.vuln_list th{
+        background: #0243a1;
+        color: white;
 }
-td#right #info{
-	font-size: 14px;
-	text-align: justify;
-  text-justify: inter-word;
-  padding-top: 5px;
-  padding-bottom: 5px;
+.vuln_list th{
+        padding: 2px;
+        word-break: break-all;
+        word-wrap: break-word;
+        text-align: center;
 }
-
-#name_rate #point, #name_rate #info, #name_rate #sl{
-	color: white;
-	font-size: 17.5px;
-	font-weight: bold;
+.vuln_list #score{
+        width: 85px;
+        text-align: center;
 }
-/*#name_rate #name #point{padding-left: 10px;padding-right: 5px;}
-#name_rate #rate #point{padding-left: 40px;padding-right: 5px;}*/
-
-#cvss_cve #info , #system #info{font-size: 14.5px;}
-
-.CRITICAL #point{color: darkred;}
-.HIGH #point{color: red;}
-.MEDIUM #point{color: #FFC000;}
-.LOW #point{color: #86fc40;}
-.INFORMATIONAL #point{color: #00B0F0;}
-
-.CRITICAL tr#name_rate{background-color: darkred;}
-.HIGH tr#name_rate{background-color: red;}
-.MEDIUM tr#name_rate{background-color: #FFC000;}
-.LOW tr#name_rate{background-color: #86fc40;}
-.INFORMATIONAL tr#name_rate{background-color: #00B0F0;}
-
-/*
-.CRITICAL{}
-.HIGH{}
-.MEDIUM{}
-.LOW{}
-.INFORMATIONAL{}
-*/
+.vuln_list #version{
+        width: 100px;
+        text-align: center;
+}
+.vuln_list #risk_critical{
+        width: 75px;
+        background-color: darkred;
+        color: white;
+        text-align: center;
+}
+.vuln_list #risk_high{
+        width: 75px;
+        background-color: red;
+        color: white;
+        text-align: center;
+}
+.vuln_list #risk_medium{
+        width: 75px;
+        background-color: #FFC000;
+        color: white;
+        text-align: center;
+}
+.vuln_list #risk_informational{
+        width: 75px;
+        background-color: #00B0F0;
+        color: white;
+        text-align: center;
+}
+.vuln_list #sl{
+        width: 20px;
+        text-align: center;
+}
+.vuln_list td#v_name{
+        text-align: left;
+        padding-left: 5px;
+        padding-bottom: 5px;
+}
+p { 
+        margin-left: 100px; 
+        font-weight: bold;
+        text-decoration: underline;
+}
+table.vuln{
+        width: 700px;
+        margin-bottom: 50px;
+}
+tr#vuln{
+        color: white;
+        font-size: 17.5px;
+}
+.critical tr#vuln{background-color: darkred;}
+.critical #point{color: darkred;}
+.high tr#vuln{background-color: red;}
+.high #point{color: red;}
+.medium tr#vuln{background-color: #FFC000;}
+.medium #point{color: #FFC000;}
+.low tr#vuln{background-color: #86fc40;}
+.low #point{color: #86fc40;}
+.informational tr#vuln{background-color: #00B0F0;}
+.informational #point{color: #00B0F0;}
+#vuln #point{
+        font-weight: bold;
+        color: white;
+}
+.vuln #point{
+        font-weight: bold;
+        padding-left: 5px;
+}
+.vuln #info{padding-left: 5px;}
+#vuln #sl{ padding-left: 5px; }
+#vuln #point #name{padding-left: 5px;}
+#vuln #point #rate{padding-left: 25px;}
+#classification #point{font-weight: bold;}
+#reference #point{
+        text-align: left;
+        margin-left: -100px;
+}
+#reference #li {margin-left: -70px;}
+tr#classification{font-size: 14.5px;}
+.vuln #left{width: 50px;}
