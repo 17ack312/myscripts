@@ -68,6 +68,12 @@ table#ip_details {
         color: white;
         text-align: center;
 }
+.vuln_list #risk_medium{
+        width: 75px;
+        background-color: #86fc40;
+        color: white;
+        text-align: center;
+}
 .vuln_list #risk_informational{
         width: 75px;
         background-color: #00B0F0;
