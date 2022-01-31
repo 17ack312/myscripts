@@ -68,7 +68,7 @@ table#ip_details {
         color: white;
         text-align: center;
 }
-.vuln_list #risk_medium{
+.vuln_list #risk_low{
         width: 75px;
         background-color: #86fc40;
         color: white;
