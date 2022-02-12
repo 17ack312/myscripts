@@ -2,7 +2,7 @@ body{font-family: Tahoma;font-size: 14.5px;}
 @media print {
   footer {page-break-after: always;}
 }
-table,tr,td,th{
+tr,td,th{
         border: 1px solid black;
         border-collapse: collapse;
         padding: 5px;
