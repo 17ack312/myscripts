@@ -183,12 +183,14 @@ def createHTML(ip_details,vuln_details,name,out_path):
 
         f.write('<tr id="host">\n')
         f.write('<td id="point" colspan="2">HOST</td>\n')
-        f.write('<td id="details" colspan="3">'+str(i['host'])+'</td>\n')
-        f.write('</tr>\n')
+        f.write('<td id="details" colspan="1">'+str(i['host'])+'</td>\n')
 
-        f.write('<tr id="ip">\n')
-        f.write('<td id="point" colspan="2">IP</td>\n')
-        f.write('<td id="details" colspan="3">'+str(i['ip'])+'</td>\n')
+        #f.write('</tr>\n')
+
+        #f.write('<tr id="ip">\n')
+
+        f.write('<td id="point" colspan="1">IP</td>\n')
+        f.write('<td id="details" colspan="2">'+str(i['ip'])+'</td>\n')
         f.write('</tr>\n')
 
         try:
@@ -228,7 +230,9 @@ def createHTML(ip_details,vuln_details,name,out_path):
             pass
 
         f.write('<br>\n')
-        f.write('<tr class="vuln_list"><th>Sl</th><th>Severity</th><th>Vulnerability name</th><th>CVSS Score</th><th>CVSS Version</th></tr>\n')
+        #f.write('</table>\n<table ip="ip_details">\n')
+        f.write('<tr style="border : none;"><td style="border:none;" colspan=5></td></tr>\n')
+        f.write('<tr class="vuln_list"><th>Sl</th><th>Severity</th><th>Vulnerability name</th><th>CVSS Score</th><th>CVSS Version</th><th>Classification</th></tr>\n')
 
         sl=1
         for j in vuln_details:
@@ -241,6 +245,11 @@ def createHTML(ip_details,vuln_details,name,out_path):
                 f.write('<td id="v_name"><a href="#'+str(j['name']).replace(' ','').lower()+'">'+str(j['name'])+'</a></td>\n')
                 f.write('<td id="score">'+str(j['score'])+'</td>\n')
                 f.write('<td id="version">'+str(j['base'])+'</td>\n')
+
+                try:
+                    f.write('<td id="classification" style="white-space:nowrap">'+str(j['classification']).replace(';','<br>')+'</td>')
+                except:
+                    f.write('<td id="classification" style="white-space:nowrap"></td>')
 
                 f.write('</tr>\n')
                 sl+=1
@@ -262,7 +271,6 @@ def createHTML(ip_details,vuln_details,name,out_path):
         #f.write(i)
         f.write('<div class="'+str(i['severity']).lower()+'" align="center">\n')
         f.write('<table class="vuln" id="'+str(i['name']).replace(' ','').lower()+'">\n')
-
         f.write('<tr id="vuln">\n')
         f.write('<td colspan=2>\n')
         f.write('<span id="sl">'+str(count)+'.</span>\n')
@@ -277,20 +285,28 @@ def createHTML(ip_details,vuln_details,name,out_path):
         f.write('<td colspan=2>\n')
         f.write('<span id="point">CVSS:</span>\n')
         f.write('<span id="info">'+str(i['score'])+' '+str(i['string'])+'</span>\n')
+
         try:
-            for x in str(i['classification']).replace(';',', ').split(','):
+            if 'CVE' in (i['classification']):
+                f.write('<br>\n')
+                f.write('<span id="point">CVE:</span>\n')
                 a=[]
-                if str('CVE') in x:
-                    f.write('<br>\n')
-                    f.write('<span id="point">CVE:</span>\n')
-                    f.write('<span id="info"><a target="_blank" href="https://nvd.nist.gov/vuln/detail/'+str(x)+'">'+str(x)+'</a></span>\n')
+                for x in str(i['classification']).replace(';', ', ').split(','):
+                    if str('CVE') in x:
+                        a.append('<span id="info"><a target="_blank" href="https://nvd.nist.gov/vuln/detail/' + str(x).replace(' ','') + '"> ' + str(x) + ' </a></span>\n')
+                f.write(", ".join(a))
+
+            if 'CWE' in (i['classification']):
+                f.write('<br>\n')
+                f.write('<span id="point">CWE:</span>\n')
                 b=[]
-                if str('CWE') in x:
-                    f.write('<br>\n')
-                    f.write('<span id="point">CWE:</span>\n')
-                    f.write('<span id="info"><a target="_blank" href="http://cwe.mitre.org/data/definitions/' + str(str(x).split(':')[1]) + '">' + str(x) + '</a></span>\n')
+                for x in str(i['classification']).replace(';', ', ').split(','):
+                    if str('CWE') in x:
+                        b.append('<span id="info"><a target="_blank" href="http://cwe.mitre.org/data/definitions/' + str(str(x).split(':')[1]).replace(' ','') + '">' + str(x) + '</a></span>\n')
+                f.write(", ".join(b))
         except:
             pass
+
         f.write('</td>\n')
         f.write('</tr>\n')
 
