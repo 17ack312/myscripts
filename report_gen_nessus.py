@@ -213,7 +213,7 @@ def createHTML(ip_details,vuln_details,name,out_path):
             mac=str(i['mac_address'])
             f.write('<tr id="mac">\n')
             f.write('<td id="point" colspan="2">MAC Address</td>\n')
-            f.write('<td id="details" colspan="3">' + mac + '</td>\n')
+            f.write('<td id="details" colspan="3">' + mac.replace(' ',', ') + '</td>\n')
             f.write('</tr>\n')
         except:
             pass
@@ -419,6 +419,7 @@ x=file.split('/')
 temp=x[-1]
 x.remove(temp)
 out_path=str("/".join(x))+'/'+name+'.html'
+
 
 createHTML(ip_details,vulnerability,name,out_path)
 
