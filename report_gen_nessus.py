@@ -377,6 +377,8 @@ def create_doc(data,ips,names):
 	doc.save(out_path+'_doc.docx')
 
 def create_HTML(data,ips):
+	def done():
+		print("Created By Rajdeep\nmail:17ack312@gmail.com")
 	html=''
 	html=html+str('<html>\n<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta http-equiv="refresh" content="30" >\n<title></title>\n<style>' + requests.get('https://raw.githubusercontent.com/17ack312/myscripts/main/style_report.css').content.decode() + '</style>\n</head>\n<body>\n')
 	html=html+str('<div align="center"><table width=75%>\n')
@@ -524,6 +526,7 @@ def create_HTML(data,ips):
 	f=open(out_path+'_Report.html','w')
 	f.write(html)
 	f.close()
+	done()
 
 
 data=process_data(data)
