@@ -526,7 +526,7 @@ def create_HTML(data,ips):
 	f=open(out_path+'_Report.html','w')
 	f.write(html)
 	f.close()
-	done()
+	#done()
 
 
 data=process_data(data)
