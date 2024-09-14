@@ -1,7 +1,14 @@
 [
   "git": {
-      "profile": "https://api.github.com/users/17ack312",
-      "image": "https://avatars.githubusercontent.com/u/48894311?v=4",
-      },
+          "profile": "https://api.github.com/users/17ack312",
+          "image": "https://avatars.githubusercontent.com/u/48894311?v=4"
+          },
+  
+  "social": {
+            "fb" : "https://www.facebook.com/rajdeep.basu.1426/",
+            "insta": "https://www.instagram.com/stories/___raj_deep___/",
+            "LinkedIn": "https://www.linkedin.com/in/rajdeep-basu-/",
+            "git": "https://github.com/17ack312"
+            }
   
 ]
